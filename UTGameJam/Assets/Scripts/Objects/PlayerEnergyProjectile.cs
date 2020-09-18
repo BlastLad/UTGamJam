@@ -28,6 +28,11 @@ public class PlayerEnergyProjectile : MonoBehaviour
             other.gameObject.GetComponent<EnemyType1Controller>().TakeDamage(1);
             Destroy(gameObject);
         }
+        else if(other.gameObject.tag == "Enemy2")
+        {
+            other.gameObject.GetComponent<EnemyType2Controller>().TakeDamage(1);
+            Destroy(gameObject);
+        }
         else
         {
             Destroy(gameObject);
