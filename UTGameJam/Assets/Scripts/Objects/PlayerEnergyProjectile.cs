@@ -23,9 +23,10 @@ public class PlayerEnergyProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy1")
         {
-
+            other.gameObject.GetComponent<EnemyType1Controller>().TakeDamage(1);
+            Destroy(gameObject);
         }
         else
         {

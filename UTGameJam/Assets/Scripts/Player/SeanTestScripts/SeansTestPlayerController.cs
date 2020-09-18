@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SeansTestPlayerController : MonoBehaviour
 {
+    public static SeansTestPlayerController Instance { get; private set; }
+
     [SerializeField]
     private float playerSpeed = 5;
     public float playerRunSpeed = 5f;
@@ -13,12 +15,14 @@ public class SeansTestPlayerController : MonoBehaviour
     public float shotCoolDown;
     private float shotCoolDownTimer;
     private bool canShoot = true;
+    private bool canChangeColor = true;
+    public bool isYellow = true;
 
     [SerializeField]
     private float slowFallGravScale = 0.2f;
     private float regularGravScale = 1f;
 
-    private bool isBarrierActive = false;
+    public bool isBarrierActive = false;
 
 
     public Transform fireOrigin;
@@ -31,6 +35,7 @@ public class SeansTestPlayerController : MonoBehaviour
     Vector3 moveVector;
     private void Awake()
     {
+        Instance = this;
         rb = GetComponent<Rigidbody2D>();
         energyBarrierTrigger = GetComponent<CircleCollider2D>();
         startPosition = rb.transform.position;
@@ -66,6 +71,9 @@ public class SeansTestPlayerController : MonoBehaviour
             transform.position = startPosition;
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftShift)) { ChangeColor(); }
+
+
         if (Input.GetMouseButton(1))
         {
             DeployBarrier();
@@ -78,7 +86,11 @@ public class SeansTestPlayerController : MonoBehaviour
     {
         Vector3 movement = moveVector;
         transform.position += moveVector * playerSpeed * Time.fixedDeltaTime;//updated position area
-        //rb.MovePosition(position);//actual movement of player
+        
+        //Vector3 position = rb.position;//Current Position of Player
+        //position = position + moveVector * playerSpeed * Time.fixedDeltaTime;//updated position area
+        //rb.MovePosition(position);
+
     }
 
     void FireWeapon()
@@ -99,6 +111,16 @@ public class SeansTestPlayerController : MonoBehaviour
         ChargeBarTimerScript.Instance.SetIsBarActive(true);
     }
 
+    public void TakeDamage(int damageVal)
+    {
+        rb.velocity = new Vector2(0,0);
+    }
+
+    void ChangeColor()
+    {
+        isYellow = !isYellow;
+        Debug.Log(isYellow);
+    }
     void RetractBarrier()
     {
         energyBarrierTrigger.enabled = false;
