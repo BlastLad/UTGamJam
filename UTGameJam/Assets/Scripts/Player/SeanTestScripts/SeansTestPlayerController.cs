@@ -8,6 +8,12 @@ public class SeansTestPlayerController : MonoBehaviour
     private float playerSpeed = 5;
     public float playerRunSpeed = 5f;
     public float playerFallSpeed = 2f;
+    private float projectileOffSet = 0;
+
+    public float shotCoolDown;
+    private float shotCoolDownTimer;
+    private bool canShoot = true;
+
     [SerializeField]
     private float slowFallGravScale = 0.2f;
     private float regularGravScale = 1f;
@@ -15,7 +21,8 @@ public class SeansTestPlayerController : MonoBehaviour
     private bool isBarrierActive = false;
 
 
-
+    public Transform fireOrigin;
+    public GameObject energyShotPrefab;
     private Rigidbody2D rb;
     private CircleCollider2D energyBarrierTrigger;
 
@@ -42,7 +49,18 @@ public class SeansTestPlayerController : MonoBehaviour
         moveVector.y = 0;
         moveVector.z = 0;
 
+        Vector3 shotRotation = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float rotationOnZ = Mathf.Atan2(shotRotation.y, shotRotation.x) * Mathf.Rad2Deg;
+        fireOrigin.rotation = Quaternion.Euler(0f, 0f, rotationOnZ + projectileOffSet);
 
+        if (shotCoolDownTimer <= 0)
+        {
+            if (Input.GetButtonDown("Fire1")) { FireWeapon(); }
+        }
+        else
+        {
+            shotCoolDownTimer -= Time.deltaTime;
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             transform.position = startPosition;
@@ -63,7 +81,15 @@ public class SeansTestPlayerController : MonoBehaviour
         //rb.MovePosition(position);//actual movement of player
     }
 
+    void FireWeapon()
+    {
+        if (canShoot && isBarrierActive == false)
+        {
+            Instantiate(energyShotPrefab, fireOrigin.transform.position, fireOrigin.rotation);
+            shotCoolDownTimer = shotCoolDown;
 
+        }
+    }
     void DeployBarrier()
     {
         energyBarrierTrigger.enabled = true;
