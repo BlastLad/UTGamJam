@@ -104,11 +104,15 @@ public class SeansTestPlayerController : MonoBehaviour
     }
     void DeployBarrier()
     {
-        energyBarrierTrigger.enabled = true;
-        rb.gravityScale = slowFallGravScale;
-        isBarrierActive = true;
-        playerSpeed = playerFallSpeed;
-        ChargeBarTimerScript.Instance.SetIsBarActive(true);
+        
+        if (ChargeBarTimerScript.Instance.canUseBarrier == true)
+        {
+            energyBarrierTrigger.enabled = true;
+            rb.gravityScale = slowFallGravScale;
+            isBarrierActive = true;
+            playerSpeed = playerFallSpeed;
+            ChargeBarTimerScript.Instance.SetIsBarActive(true);
+        }
     }
 
     public void TakeDamage(int damageVal)
@@ -121,7 +125,7 @@ public class SeansTestPlayerController : MonoBehaviour
         isYellow = !isYellow;
         Debug.Log(isYellow);
     }
-    void RetractBarrier()
+    public void RetractBarrier()
     {
         energyBarrierTrigger.enabled = false;
         rb.gravityScale = regularGravScale;

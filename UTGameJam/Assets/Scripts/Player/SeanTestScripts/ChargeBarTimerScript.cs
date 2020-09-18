@@ -34,9 +34,11 @@ public class ChargeBarTimerScript : MonoBehaviour
             {
                 //isBarActive = false;
                 canUseBarrier = false;
+                SeansTestPlayerController.Instance.RetractBarrier();
+                StartCoroutine(BarCoolDown(2.5f));
             }
         }
-        else if (isBarActive == false && slider.value < slider.maxValue)
+        else if (isBarActive == false && slider.value < slider.maxValue && canUseBarrier == true)
         {
             if (BarTimer <= slider.maxValue)
             {
@@ -48,7 +50,11 @@ public class ChargeBarTimerScript : MonoBehaviour
     }
 
 
-
+    private IEnumerator BarCoolDown(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        canUseBarrier = true;
+    }
     public void SetIsBarActive(bool val)
     {
         isBarActive = val;

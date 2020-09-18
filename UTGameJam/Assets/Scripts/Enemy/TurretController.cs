@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyType1Controller : MonoBehaviour
+public class TurretController : MonoBehaviour
 {
-    //ENEMY SHOULD HAVE A CIRCULAR RANGE BEFORE FIRING AT THE PLAYER
-    public int maxHitNum = 7;
-    private int currentHitNum = 0;
+   
     public float projectileSpeed = 5f;
     private bool shotCoolDown = false;
 
@@ -14,10 +12,9 @@ public class EnemyType1Controller : MonoBehaviour
     private GameObject projectilePrefab;//Starts Yellow
 
     [SerializeField]
-    private GameObject[] projectileColors;//0 yellow 1 red
-
+    private GameObject[] projectileColors;//0 - 2 Yellow 3 Red
     private GameObject targetPlayer;
-    
+
     private float timeBetweenShotsTimer = 0;
     public float startTimeBetweenShotsTime = 2f;
 
@@ -30,7 +27,6 @@ public class EnemyType1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (shotCoolDown == true)
         {
             timeBetweenShotsTimer -= Time.deltaTime;
@@ -52,32 +48,9 @@ public class EnemyType1Controller : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("Health Lost");
-            DirectionalKnockback(other.gameObject);
-        }
-    }
-
-    public void TakeDamage(int damageVal)
-    {
-        currentHitNum++;
-        if (currentHitNum >= maxHitNum) 
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private void DirectionalKnockback(GameObject other)
-    {
-        
-    }
-
     private void SpawnProjectile()
     {
-        int i = Random.Range(0, 2);
+        int i = Random.Range(0, 4);
 
         projectilePrefab = projectileColors[i];
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(targetPlayer.transform.position - transform.position).normalized);
