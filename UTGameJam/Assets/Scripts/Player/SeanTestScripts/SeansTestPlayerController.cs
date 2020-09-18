@@ -5,7 +5,9 @@ using UnityEngine;
 public class SeansTestPlayerController : MonoBehaviour
 {
     [SerializeField]
-    private int playerSpeed = 5;
+    private float playerSpeed = 5;
+    public float playerRunSpeed = 5f;
+    public float playerFallSpeed = 2f;
     [SerializeField]
     private float slowFallGravScale = 0.2f;
     private float regularGravScale = 1f;
@@ -49,6 +51,7 @@ public class SeansTestPlayerController : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             DeployBarrier();
+            Debug.Log("Right Button Down");
         }
         else { RetractBarrier(); }
     }
@@ -66,6 +69,8 @@ public class SeansTestPlayerController : MonoBehaviour
         energyBarrierTrigger.enabled = true;
         rb.gravityScale = slowFallGravScale;
         isBarrierActive = true;
+        playerSpeed = playerFallSpeed;
+        ChargeBarTimerScript.Instance.SetIsBarActive(true);
     }
 
     void RetractBarrier()
@@ -73,5 +78,7 @@ public class SeansTestPlayerController : MonoBehaviour
         energyBarrierTrigger.enabled = false;
         rb.gravityScale = regularGravScale;
         isBarrierActive = false;
+        playerSpeed = playerRunSpeed;
+        ChargeBarTimerScript.Instance.SetIsBarActive(false);
     }
 }
