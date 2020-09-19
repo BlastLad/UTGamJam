@@ -144,7 +144,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 0}
   laserHit: {fileID: 0}
   isYellow: 1
-  isOnTimer: 1
+  isOnTimer: 0
   switchTime: 3
   yellowBeam: {fileID: 2100000, guid: a36b530c6c08b12459f8524a1f87c4f6, type: 2}
   redBeam: {fileID: 2100000, guid: ed5db7fc272e34c43b1a7d8486d5e9be, type: 2}
