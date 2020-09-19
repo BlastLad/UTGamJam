@@ -27,6 +27,7 @@ public class SeansTestPlayerController : MonoBehaviour
 
     public Transform fireOrigin;
     public GameObject energyShotPrefab;
+    public GameObject energyField;
     private Rigidbody2D rb;
     private CircleCollider2D energyBarrierTrigger;
 
@@ -37,7 +38,7 @@ public class SeansTestPlayerController : MonoBehaviour
     {
         Instance = this;
         rb = GetComponent<Rigidbody2D>();
-        energyBarrierTrigger = GetComponent<CircleCollider2D>();
+        energyBarrierTrigger = GetComponentInChildren<CircleCollider2D>();
         startPosition = rb.transform.position;
     }
 
@@ -110,6 +111,8 @@ public class SeansTestPlayerController : MonoBehaviour
             energyBarrierTrigger.enabled = true;
             rb.gravityScale = slowFallGravScale;
             isBarrierActive = true;
+            if (rb.velocity.y <= -3.0f) { rb.velocity = new Vector2(0, -3.0f); }
+            //rb.velocity = new Vector2(0,0); If this version make fallspeed 7
             playerSpeed = playerFallSpeed;
             ChargeBarTimerScript.Instance.SetIsBarActive(true);
         }
@@ -122,8 +125,12 @@ public class SeansTestPlayerController : MonoBehaviour
 
     void ChangeColor()
     {
-        isYellow = !isYellow;
-        Debug.Log(isYellow);
+        if (isBarrierActive == false)
+        {
+            isYellow = !isYellow;
+            energyField.GetComponent<EnergyField>().SwitchColor();
+            Debug.Log(isYellow);
+        }
     }
     public void RetractBarrier()
     {
