@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerShoot
+  m_Name: Enemy1Idle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,16 +20,22 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 3808731143584901921, guid: df9693209bf11b241978f1066828d7cb,
+      value: {fileID: 4523429323041083370, guid: 3f7b173a647dd8848b00308078c83bf5,
         type: 3}
-    - time: 0.14285715
-      value: {fileID: 1967972952985083720, guid: df9693209bf11b241978f1066828d7cb,
+    - time: 0.2
+      value: {fileID: 5641493726644171400, guid: 3f7b173a647dd8848b00308078c83bf5,
+        type: 3}
+    - time: 0.4
+      value: {fileID: 8272461238844234769, guid: 3f7b173a647dd8848b00308078c83bf5,
+        type: 3}
+    - time: 0.6
+      value: {fileID: -1218894992838594214, guid: 3f7b173a647dd8848b00308078c83bf5,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 7
+  m_SampleRate: 5
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -44,14 +50,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 3808731143584901921, guid: df9693209bf11b241978f1066828d7cb, type: 3}
-    - {fileID: 1967972952985083720, guid: df9693209bf11b241978f1066828d7cb, type: 3}
+    - {fileID: 4523429323041083370, guid: 3f7b173a647dd8848b00308078c83bf5, type: 3}
+    - {fileID: 5641493726644171400, guid: 3f7b173a647dd8848b00308078c83bf5, type: 3}
+    - {fileID: 8272461238844234769, guid: 3f7b173a647dd8848b00308078c83bf5, type: 3}
+    - {fileID: -1218894992838594214, guid: 3f7b173a647dd8848b00308078c83bf5, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.2857143
+    m_StopTime: 0.8
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

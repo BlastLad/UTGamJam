@@ -18,21 +18,28 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position == pos1.position)
+        if (Vector2.Distance(transform.position, pos1.position) < 0.1f)
         {
+            Debug.Log(pos1 + "Reached");
             nextPos = pos2.position;
         }
-        if (transform.position == pos2.position)
+        if (Vector2.Distance(transform.position, pos2.position) < 0.1f)
         {
+            Debug.Log(pos2 + " 2 Reached");
             nextPos = pos1.position;
         }
 
         transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
+
+        
+
+
     }
 
    
     void OnDrawGizmos()
     {
+        //OnDrawGizmos();
         // Draw a yellow line at the transform's position
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(pos1.position, pos2.position);

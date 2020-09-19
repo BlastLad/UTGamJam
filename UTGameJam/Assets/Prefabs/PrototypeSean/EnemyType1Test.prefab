@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8743511618667981863}
   - component: {fileID: 8743511618667981862}
   - component: {fileID: 8743511618667981856}
+  - component: {fileID: 1319358489}
   m_Layer: 10
   m_Name: EnemyType1Test
   m_TagString: Enemy1
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: -1630916639
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4936914935163570238, guid: 7161ba9576eb908478cc648121b28dc6,
+  m_Sprite: {fileID: 4523429323041083370, guid: 3f7b173a647dd8848b00308078c83bf5,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -105,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 7
 --- !u!70 &8743511618667981862
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -119,8 +120,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.025906563, y: -0.1230824}
-  m_Size: {x: 0.7436466, y: 1.1451396}
+  m_Offset: {x: -0.01652491, y: 0.15702772}
+  m_Size: {x: 1.8808081, y: 2.1525474}
   m_Direction: 0
 --- !u!114 &8743511618667981856
 MonoBehaviour:
@@ -136,9 +137,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHitNum: 7
   projectileSpeed: 5
+  maxShootRange: 30
   projectilePrefab: {fileID: 6316625464173973923, guid: 62651a2e6ff95d444a60a99889fe678d,
     type: 3}
   projectileColors:
   - {fileID: 6316625464173973923, guid: 62651a2e6ff95d444a60a99889fe678d, type: 3}
   - {fileID: 482187942704792660, guid: 5d7550d8d1f27f94eaebea262b37188c, type: 3}
   startTimeBetweenShotsTime: 2
+--- !u!95 &1319358489
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8743511618667981851}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e0afb291ad5355d438452cae4391ee19, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
