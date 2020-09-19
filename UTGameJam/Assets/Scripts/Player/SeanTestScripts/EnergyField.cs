@@ -27,6 +27,19 @@ public class EnergyField : MonoBehaviour
         }
     }
 
+    /*private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "EnergyBeam")
+        {
+            if (other.gameObject.GetComponentInParent<EnergyBeamController>().isYellow == isYellow)
+            {
+                other.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            }
+        }
+    }*/
+
+
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "EnergyBeam")

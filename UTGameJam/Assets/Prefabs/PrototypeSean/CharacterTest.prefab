@@ -75,9 +75,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.07}
+  m_Offset: {x: 0, y: -0.13472721}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 1.0047271
 --- !u!114 &436733896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,12 +385,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 7
+  jumpForce: 7.415
   groundCheck: {fileID: 243543238}
   checkRadius: 0.1
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 12288
   extraJumpsValue: 1
   playerGFX: {fileID: 1596487632}
 --- !u!1 &8345368283302076178
