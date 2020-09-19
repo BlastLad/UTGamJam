@@ -7,6 +7,7 @@ public class TurretController : MonoBehaviour
    
     public float projectileSpeed = 5f;
     private bool shotCoolDown = false;
+    public float maxShootRange = 30f;
 
     [SerializeField]
     private GameObject projectilePrefab;//Starts Yellow
@@ -27,23 +28,25 @@ public class TurretController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shotCoolDown == true)
+        if (Vector2.Distance(targetPlayer.transform.position, transform.position) < maxShootRange)
         {
-            timeBetweenShotsTimer -= Time.deltaTime;
-            if (timeBetweenShotsTimer < 0)
+            if (shotCoolDown == true)
             {
-                shotCoolDown = false;
+                timeBetweenShotsTimer -= Time.deltaTime;
+                if (timeBetweenShotsTimer < 0)
+                {
+                    shotCoolDown = false;
+                }
             }
-        }
 
 
-        if (shotCoolDown == false)
-        {
-            shotCoolDown = true;
-            timeBetweenShotsTimer = startTimeBetweenShotsTime;
-            SpawnProjectile();
+            if (shotCoolDown == false)
+            {
+                shotCoolDown = true;
+                timeBetweenShotsTimer = startTimeBetweenShotsTime;
+                SpawnProjectile();
 
-
+            }
         }
     }
 

@@ -45,7 +45,7 @@ public class SeansTestPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -67,11 +67,7 @@ public class SeansTestPlayerController : MonoBehaviour
         {
             shotCoolDownTimer -= Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.position = startPosition;
-        }
-
+       
         if (Input.GetKeyDown(KeyCode.LeftShift)) { ChangeColor(); }
 
 
@@ -87,7 +83,7 @@ public class SeansTestPlayerController : MonoBehaviour
     {
         Vector3 movement = moveVector;
         transform.position += moveVector * playerSpeed * Time.fixedDeltaTime;//updated position area
-        
+
         //Vector3 position = rb.position;//Current Position of Player
         //position = position + moveVector * playerSpeed * Time.fixedDeltaTime;//updated position area
         //rb.MovePosition(position);
@@ -105,12 +101,13 @@ public class SeansTestPlayerController : MonoBehaviour
     }
     void DeployBarrier()
     {
-        
+        if (!isBarrierActive) { rb.velocity = new Vector2(rb.velocity.x, 0); }
+
         if (ChargeBarTimerScript.Instance.canUseBarrier == true)
         {
             energyBarrierTrigger.enabled = true;
             rb.gravityScale = slowFallGravScale;
-            isBarrierActive = true;
+            isBarrierActive = true;           
             if (rb.velocity.y <= -3.0f) { rb.velocity = new Vector2(0, -3.0f); }
             //rb.velocity = new Vector2(0,0); If this version make fallspeed 7
             playerSpeed = playerFallSpeed;
@@ -120,7 +117,7 @@ public class SeansTestPlayerController : MonoBehaviour
 
     public void TakeDamage(int damageVal)
     {
-        rb.velocity = new Vector2(0,0);
+        rb.velocity = new Vector2(0, 0);
     }
 
     void ChangeColor()
@@ -141,3 +138,4 @@ public class SeansTestPlayerController : MonoBehaviour
         ChargeBarTimerScript.Instance.SetIsBarActive(false);
     }
 }
+

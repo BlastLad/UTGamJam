@@ -22,7 +22,7 @@ public class EnemyEnergyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "EnergyField")
         {          
             if (SeansTestPlayerController.Instance.isBarrierActive)
             {
@@ -39,12 +39,9 @@ public class EnemyEnergyProjectile : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             SeansTestPlayerController.Instance.TakeDamage(1);
-            Destroy(gameObject);
+            
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
     private void DestroyTimer()
