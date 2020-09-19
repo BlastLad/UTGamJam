@@ -9,6 +9,7 @@ public class EnemyType1Controller : MonoBehaviour
     private int currentHitNum = 0;
     public float projectileSpeed = 5f;
     private bool shotCoolDown = false;
+    public float maxShootRange = 30f;
 
     [SerializeField]
     private GameObject projectilePrefab;//Starts Yellow
@@ -30,24 +31,26 @@ public class EnemyType1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (shotCoolDown == true)
+        if (Vector2.Distance(targetPlayer.transform.position, transform.position) < maxShootRange)
         {
-            timeBetweenShotsTimer -= Time.deltaTime;
-            if (timeBetweenShotsTimer < 0)
+            if (shotCoolDown == true)
             {
-                shotCoolDown = false;
+                timeBetweenShotsTimer -= Time.deltaTime;
+                if (timeBetweenShotsTimer < 0)
+                {
+                    shotCoolDown = false;
+                }
             }
-        }
 
 
-        if (shotCoolDown == false)
-        {
-            shotCoolDown = true;
-            timeBetweenShotsTimer = startTimeBetweenShotsTime;
-            SpawnProjectile();
+            if (shotCoolDown == false)
+            {
+                shotCoolDown = true;
+                timeBetweenShotsTimer = startTimeBetweenShotsTime;
+                SpawnProjectile();
 
 
+            }
         }
     }
 
@@ -77,12 +80,14 @@ public class EnemyType1Controller : MonoBehaviour
 
     private void SpawnProjectile()
     {
-        int i = Random.Range(0, 2);
+        
+            int i = Random.Range(0, 2);
 
-        projectilePrefab = projectileColors[i];
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(targetPlayer.transform.position - transform.position).normalized);
-        projectile.GetComponent<Rigidbody2D>().velocity = (targetPlayer.transform.position - transform.position).normalized * projectileSpeed;
-        Destroy(projectile, 7f);
-        shotCoolDown = true;
+            projectilePrefab = projectileColors[i];
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(targetPlayer.transform.position - transform.position).normalized);
+            projectile.GetComponent<Rigidbody2D>().velocity = (targetPlayer.transform.position - transform.position).normalized * projectileSpeed;
+            Destroy(projectile, 7f);
+            shotCoolDown = true;
+       
     }
 }

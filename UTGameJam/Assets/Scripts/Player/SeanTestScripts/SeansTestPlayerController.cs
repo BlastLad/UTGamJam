@@ -27,8 +27,10 @@ public class SeansTestPlayerController : MonoBehaviour
 
     public Transform fireOrigin;
     public GameObject energyShotPrefab;
+    public GameObject energyField;
     private Rigidbody2D rb;
     private CircleCollider2D energyBarrierTrigger;
+    public Animator playerAnim;
 
     Vector3 startPosition;
 
@@ -37,14 +39,15 @@ public class SeansTestPlayerController : MonoBehaviour
     {
         Instance = this;
         rb = GetComponent<Rigidbody2D>();
-        energyBarrierTrigger = GetComponent<CircleCollider2D>();
+        energyBarrierTrigger = GetComponentInChildren<CircleCollider2D>();
         startPosition = rb.transform.position;
+       
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -53,6 +56,8 @@ public class SeansTestPlayerController : MonoBehaviour
         moveVector.x = Input.GetAxisRaw("Horizontal");
         moveVector.y = 0;
         moveVector.z = 0;
+        if (moveVector.x != 0) { playerAnim.SetBool("IsMoving", true); }
+
 
         Vector3 shotRotation = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotationOnZ = Mathf.Atan2(shotRotation.y, shotRotation.x) * Mathf.Rad2Deg;
@@ -66,11 +71,7 @@ public class SeansTestPlayerController : MonoBehaviour
         {
             shotCoolDownTimer -= Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.position = startPosition;
-        }
-
+       
         if (Input.GetKeyDown(KeyCode.LeftShift)) { ChangeColor(); }
 
 
@@ -86,7 +87,7 @@ public class SeansTestPlayerController : MonoBehaviour
     {
         Vector3 movement = moveVector;
         transform.position += moveVector * playerSpeed * Time.fixedDeltaTime;//updated position area
-        
+
         //Vector3 position = rb.position;//Current Position of Player
         //position = position + moveVector * playerSpeed * Time.fixedDeltaTime;//updated position area
         //rb.MovePosition(position);
@@ -104,12 +105,15 @@ public class SeansTestPlayerController : MonoBehaviour
     }
     void DeployBarrier()
     {
-        
+        if (!isBarrierActive) { rb.velocity = new Vector2(rb.velocity.x, 0); }
+
         if (ChargeBarTimerScript.Instance.canUseBarrier == true)
         {
             energyBarrierTrigger.enabled = true;
             rb.gravityScale = slowFallGravScale;
-            isBarrierActive = true;
+            isBarrierActive = true;           
+            if (rb.velocity.y <= -3.0f) { rb.velocity = new Vector2(0, -3.0f); }
+            //rb.velocity = new Vector2(0,0); If this version make fallspeed 7
             playerSpeed = playerFallSpeed;
             ChargeBarTimerScript.Instance.SetIsBarActive(true);
         }
@@ -117,13 +121,17 @@ public class SeansTestPlayerController : MonoBehaviour
 
     public void TakeDamage(int damageVal)
     {
-        rb.velocity = new Vector2(0,0);
+        rb.velocity = new Vector2(0, 0);
     }
 
     void ChangeColor()
     {
-        isYellow = !isYellow;
-        Debug.Log(isYellow);
+        if (isBarrierActive == false)
+        {
+            isYellow = !isYellow;
+            energyField.GetComponent<EnergyField>().SwitchColor();
+            Debug.Log(isYellow);
+        }
     }
     public void RetractBarrier()
     {
@@ -134,3 +142,4 @@ public class SeansTestPlayerController : MonoBehaviour
         ChargeBarTimerScript.Instance.SetIsBarActive(false);
     }
 }
+

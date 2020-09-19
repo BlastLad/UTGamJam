@@ -37,6 +37,11 @@ public class PlayerEnergyProjectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (other.gameObject.tag == "EnergyBeam")
+        {
+            Debug.Log("DamageTaken");
+        }
     }
 
     private void DestroyTimer()
