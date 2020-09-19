@@ -139,4 +139,12 @@ public class EnergyBeamController : MonoBehaviour
         MakeLineVisible();
         StartCoroutine(TurnOffLine(switchTime));
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            SeansTestPlayerController.Instance.TakeDamage(1);
+        }
+    }
 }

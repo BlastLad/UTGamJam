@@ -1,7 +1,40 @@
 fileFormatVersion: 2
-guid: 13feeed2d35ce77478c2370bc442fdc9
+guid: 0be22ae797b57fa4f8be52b3c8e6522c
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2700430442255023196
+    second: glass-Sheet-destroy_0
+  - first:
+      213: 2116372034463942796
+    second: glass-Sheet-destroy_1
+  - first:
+      213: -4332372593735213991
+    second: glass-Sheet-destroy_2
+  - first:
+      213: 2237039025760315722
+    second: glass-Sheet-destroy_3
+  - first:
+      213: 5339498990350154594
+    second: glass-Sheet-destroy_4
+  - first:
+      213: 5950172061365196907
+    second: glass-Sheet-destroy_5
+  - first:
+      213: 6926928341413599381
+    second: glass-Sheet-destroy_6
+  - first:
+      213: -223927012519794006
+    second: glass-Sheet-destroy_7
+  - first:
+      213: 347193147499949569
+    second: glass-Sheet-destroy_8
+  - first:
+      213: 5385895120556779678
+    second: glass-Sheet-destroy_9
+  - first:
+      213: -1082153104228900892
+    second: glass-Sheet-destroy_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,12 +73,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 22
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,7 +142,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: glass-Sheet-destroy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 78
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a30dbcf1d4268ad0800000000000000
+      internalID: -2700430442255023196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glass-Sheet-destroy_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 78
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c884bcef62dde5d10800000000000000
+      internalID: 2116372034463942796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glass-Sheet-destroy_2
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 78
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95c56c3741250e3c0800000000000000
+      internalID: -4332372593735213991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

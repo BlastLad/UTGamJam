@@ -57,7 +57,7 @@ public class EnemyType2Controller : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Health Lost");
+            SeansTestPlayerController.Instance.TakeDamage(1);
             DirectionalKnockback(other.gameObject);
         }
     }

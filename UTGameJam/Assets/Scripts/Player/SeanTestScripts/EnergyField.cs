@@ -24,6 +24,14 @@ public class EnergyField : MonoBehaviour
             {
                 other.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
             }
+            else
+            {
+               SeansTestPlayerController.Instance.TakeDamage(1);
+            }
+        }
+        else if (other.gameObject.tag == "Player")
+        {
+            SeansTestPlayerController.Instance.TakeDamage(1);
         }
     }
 

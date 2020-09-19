@@ -14,11 +14,20 @@ public class Spikes : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Player"))
+        if (col.gameObject.tag == "Player")
         {
-            // ENTER DAMAGE PLAYER FUNCTION HERE
-            // ex: player.Damage( some int );
+            SeansTestPlayerController.Instance.TakeDamage(1);
 
+            // this implements knockback to player when taking dmg, can be used for dmg from enemies too
+            // StartCoroutine(player.Knockback(float duration, float force, player.transform.position));
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            SeansTestPlayerController.Instance.TakeDamage(1);
             // this implements knockback to player when taking dmg, can be used for dmg from enemies too
             // StartCoroutine(player.Knockback(float duration, float force, player.transform.position));
         }

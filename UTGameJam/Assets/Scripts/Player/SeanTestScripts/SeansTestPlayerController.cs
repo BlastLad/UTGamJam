@@ -7,10 +7,17 @@ public class SeansTestPlayerController : MonoBehaviour
     public static SeansTestPlayerController Instance { get; private set; }
 
     [SerializeField]
+    public int maxHealth = 5;
+    public int currentHealth;
+    private HealthBar healthBar;
+
+
     private float playerSpeed = 5;
     public float playerRunSpeed = 5f;
     public float playerFallSpeed = 2f;
     private float projectileOffSet = 0;
+
+
 
     public float shotCoolDown;
     private float shotCoolDownTimer;
@@ -23,7 +30,7 @@ public class SeansTestPlayerController : MonoBehaviour
     private float regularGravScale = 1f;
 
     public bool isBarrierActive = false;
-
+    private bool isInvincible = false;
 
     public Transform fireOrigin;
     public GameObject energyShotPrefab;
@@ -47,7 +54,9 @@ public class SeansTestPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        healthBar = HealthBar.Instance;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -128,6 +137,21 @@ public class SeansTestPlayerController : MonoBehaviour
     public void TakeDamage(int damageVal)
     {
         rb.velocity = new Vector2(0, 0);
+        if (!isInvincible)
+        {
+            currentHealth -= damageVal;
+
+            healthBar.SetHealth(currentHealth);
+            isInvincible = true;
+            StartCoroutine(Invincibile(2f));
+        }
+    }
+
+    private IEnumerator Invincibile(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        isInvincible = false;
+
     }
 
     void ChangeColor()
@@ -150,5 +174,14 @@ public class SeansTestPlayerController : MonoBehaviour
         playerSpeed = playerRunSpeed;
         ChargeBarTimerScript.Instance.SetIsBarActive(false);
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "EnergyBeam" && isBarrierActive == false)
+        {
+            TakeDamage(1);
+        }
+    }
+
 }
 
