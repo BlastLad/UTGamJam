@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     private int extraJumps;
     public int extraJumpsValue;
+    public GameObject playerGFX;
 
     void Start()
     {
@@ -32,13 +33,17 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (facingRight == false && moveInput > 0)
+        if (Input.GetKey(KeyCode.D))
         {
-            Flip();
+            FlipRight();
         }
-        else if (facingRight == true && moveInput < 0)
+        else if (Input.GetKey(KeyCode.A))
         {
-            Flip();
+            FlipLeft();
+        }
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            playerGFX.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 
@@ -61,11 +66,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Flip()
+    void FlipRight()
     {
-        facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+        //Vector3 Scaler = transform.localScale;
+        //Scaler.x *= -1;
+        //transform.localScale = Scaler;
+        playerGFX.GetComponent<SpriteRenderer>().flipX = false;
+    }
+
+    void FlipLeft()
+    {
+        playerGFX.GetComponent<SpriteRenderer>().flipX = true;
     }
 }

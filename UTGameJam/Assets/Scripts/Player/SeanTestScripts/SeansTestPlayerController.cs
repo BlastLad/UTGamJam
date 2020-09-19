@@ -30,6 +30,7 @@ public class SeansTestPlayerController : MonoBehaviour
     public GameObject energyField;
     private Rigidbody2D rb;
     private CircleCollider2D energyBarrierTrigger;
+    public Animator playerAnim;
 
     Vector3 startPosition;
 
@@ -40,6 +41,7 @@ public class SeansTestPlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         energyBarrierTrigger = GetComponentInChildren<CircleCollider2D>();
         startPosition = rb.transform.position;
+       
     }
 
     // Start is called before the first frame update
@@ -54,6 +56,8 @@ public class SeansTestPlayerController : MonoBehaviour
         moveVector.x = Input.GetAxisRaw("Horizontal");
         moveVector.y = 0;
         moveVector.z = 0;
+        if (moveVector.x != 0) { playerAnim.SetBool("IsMoving", true); }
+
 
         Vector3 shotRotation = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotationOnZ = Mathf.Atan2(shotRotation.y, shotRotation.x) * Mathf.Rad2Deg;
