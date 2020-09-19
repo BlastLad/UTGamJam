@@ -57,6 +57,7 @@ public class SeansTestPlayerController : MonoBehaviour
         moveVector.y = 0;
         moveVector.z = 0;
         if (moveVector.x != 0) { playerAnim.SetBool("IsMoving", true); }
+        else { playerAnim.SetBool("IsMoving", false); }
 
 
         Vector3 shotRotation = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -77,10 +78,13 @@ public class SeansTestPlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
+            playerAnim.SetBool("IsShielding", true);
             DeployBarrier();
             Debug.Log("Right Button Down");
         }
-        else { RetractBarrier(); }
+        else { RetractBarrier();
+            playerAnim.SetBool("IsShielding", false);
+        }
     }
 
     private void FixedUpdate()
@@ -98,6 +102,7 @@ public class SeansTestPlayerController : MonoBehaviour
     {
         if (canShoot && isBarrierActive == false)
         {
+            playerAnim.SetTrigger("Shoot");
             Instantiate(energyShotPrefab, fireOrigin.transform.position, fireOrigin.rotation);
             shotCoolDownTimer = shotCoolDown;
 
@@ -109,6 +114,7 @@ public class SeansTestPlayerController : MonoBehaviour
 
         if (ChargeBarTimerScript.Instance.canUseBarrier == true)
         {
+            playerAnim.SetBool("IsShielding", true);
             energyBarrierTrigger.enabled = true;
             rb.gravityScale = slowFallGravScale;
             isBarrierActive = true;           
@@ -129,12 +135,15 @@ public class SeansTestPlayerController : MonoBehaviour
         if (isBarrierActive == false)
         {
             isYellow = !isYellow;
+            //if (isYellow) { playerAnim.SetBool("IsYellow", isYellow); }
+            playerAnim.SetBool("IsYellow", isYellow);
             energyField.GetComponent<EnergyField>().SwitchColor();
             Debug.Log(isYellow);
         }
     }
     public void RetractBarrier()
     {
+        
         energyBarrierTrigger.enabled = false;
         rb.gravityScale = regularGravScale;
         isBarrierActive = false;

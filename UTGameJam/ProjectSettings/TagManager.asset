@@ -13,6 +13,7 @@ TagManager:
   - WorldObject
   - EnergyBeam
   - EnergyField
+  - Floor
   layers:
   - Default
   - TransparentFX

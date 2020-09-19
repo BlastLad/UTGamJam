@@ -50,19 +50,32 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (isGrounded == true)
-        {
+        {         
+                
+                playerGFX.GetComponent<Animator>().SetTrigger("Landed");           
             extraJumps = extraJumpsValue;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0 && GetComponent<SeansTestPlayerController>().isBarrierActive == false)
         {
+            playerGFX.GetComponent<Animator>().SetTrigger("IsJumping");
+            playerGFX.GetComponent<Animator>().SetBool("IsInAir", true);
             rb.velocity = new Vector2(0, 0);
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
         }
         else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true && GetComponent<SeansTestPlayerController>().isBarrierActive == false)
         {
+            playerGFX.GetComponent<Animator>().SetTrigger("IsJumping");
             rb.velocity = Vector2.up * jumpForce;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            playerGFX.GetComponent<Animator>().SetBool("IsInAir", false);
         }
     }
 
