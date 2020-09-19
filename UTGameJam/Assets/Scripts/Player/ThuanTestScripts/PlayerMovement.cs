@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded == true)
         {         
                 
-                playerGFX.GetComponent<Animator>().SetTrigger("Landed");           
+            playerGFX.GetComponent<Animator>().SetTrigger("Landed");           
             extraJumps = extraJumpsValue;
         }
 
@@ -77,7 +78,19 @@ public class PlayerMovement : MonoBehaviour
         {
             playerGFX.GetComponent<Animator>().SetBool("IsInAir", false);
         }
+
     }
+
+    void OnTriggerEnter2D(Collider2D hit)
+    {
+        if(hit.gameObject.tag == "DeathZone")
+        {
+            Scene CS = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(CS.name);
+        }
+    }
+
+
 
     void FlipRight()
     {

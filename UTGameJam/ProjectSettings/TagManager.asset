@@ -14,6 +14,7 @@ TagManager:
   - EnergyBeam
   - EnergyField
   - Floor
+  - DeathZone
   layers:
   - Default
   - TransparentFX
