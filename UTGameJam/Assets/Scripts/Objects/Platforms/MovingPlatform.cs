@@ -35,8 +35,22 @@ public class MovingPlatform : MonoBehaviour
 
 
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            other.collider.transform.SetParent(transform);
+        }
+    }
 
-   
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            other.collider.transform.SetParent(null);
+        }
+    }
+
     void OnDrawGizmos()
     {
         //OnDrawGizmos();
