@@ -6,13 +6,14 @@ public class MotherScript : MonoBehaviour
 {
     public float timeValue;
 
+    private AudioSource motherAudio;
     //public GameObject cameraItem;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        motherAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class MotherScript : MonoBehaviour
 
     private void PutOnAShow()
     {
-        //Play audio clip
+        motherAudio.Play();
         //Animation???
          StartCoroutine(LoadNextSceneTime(timeValue));
         ShakeBehavior.Instance.gameObject.GetComponent<CameraFollow>().SetPosInEvent();

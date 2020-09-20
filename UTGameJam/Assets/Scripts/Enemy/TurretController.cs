@@ -8,6 +8,8 @@ public class TurretController : MonoBehaviour
     public float projectileSpeed = 5f;
     private bool shotCoolDown = false;
     public float maxShootRange = 30f;
+    private AudioSource turretAudio;
+    public AudioClip shootSFX;
 
     [SerializeField]
     private GameObject projectilePrefab;//Starts Yellow
@@ -22,6 +24,7 @@ public class TurretController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        turretAudio = GetComponent<AudioSource>();
         targetPlayer = SeansTestPlayerController.Instance.gameObject;
     }
 
@@ -54,7 +57,7 @@ public class TurretController : MonoBehaviour
     private void SpawnProjectile()
     {
         int i = Random.Range(0, 4);
-
+        turretAudio.PlayOneShot(shootSFX, .55f);
         projectilePrefab = projectileColors[i];
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(targetPlayer.transform.position - transform.position).normalized);
         projectile.GetComponent<Rigidbody2D>().velocity = (targetPlayer.transform.position - transform.position).normalized * projectileSpeed;

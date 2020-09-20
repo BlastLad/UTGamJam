@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     private float moveInput;
 
+    public AudioSource playerAudio;
+    public AudioClip landSFX;
+
     public bool canJump = true;
 
     private Rigidbody2D rb;
@@ -26,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
         extraJumps = extraJumpsValue;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -55,7 +59,8 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded == true)
         {         
                 
-            playerGFX.GetComponent<Animator>().SetTrigger("Landed");           
+            playerGFX.GetComponent<Animator>().SetTrigger("Landed");
+            
             extraJumps = extraJumpsValue;
         }
 
@@ -80,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Floor")
         {
             playerGFX.GetComponent<Animator>().SetBool("IsInAir", false);
+            playerAudio.PlayOneShot(landSFX, 0.05f);
         }
 
     }

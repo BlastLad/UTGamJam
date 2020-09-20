@@ -10,6 +10,10 @@ public class EnemyType1Controller : MonoBehaviour
     public float projectileSpeed = 5f;
     private bool shotCoolDown = false;
     public float maxShootRange = 30f;
+    private AudioSource enemyAudio;
+    public AudioClip destroySFX;
+    public AudioClip glitchSFX;
+    public AudioClip shootSFX;
 
     [SerializeField]
     private GameObject projectilePrefab;//Starts Yellow
@@ -26,6 +30,7 @@ public class EnemyType1Controller : MonoBehaviour
     void Start()
     {
         targetPlayer = SeansTestPlayerController.Instance.gameObject;
+        enemyAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -69,7 +74,8 @@ public class EnemyType1Controller : MonoBehaviour
         currentHitNum++;
         if (currentHitNum >= maxHitNum) 
         {
-            Destroy(gameObject);
+            enemyAudio.PlayOneShot(destroySFX, 1f);
+            Destroy(gameObject, 0.5f);
         }
     }
 
@@ -82,7 +88,7 @@ public class EnemyType1Controller : MonoBehaviour
     {
         
             int i = Random.Range(0, 2);
-
+            enemyAudio.PlayOneShot(shootSFX);
             projectilePrefab = projectileColors[i];
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(targetPlayer.transform.position - transform.position).normalized);
             projectile.GetComponent<Rigidbody2D>().velocity = (targetPlayer.transform.position - transform.position).normalized * projectileSpeed;

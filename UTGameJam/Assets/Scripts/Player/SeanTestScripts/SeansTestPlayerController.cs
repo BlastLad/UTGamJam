@@ -6,6 +6,10 @@ public class SeansTestPlayerController : MonoBehaviour
 {
     public static SeansTestPlayerController Instance { get; private set; }
 
+    private AudioSource playerAudio;
+    public AudioClip damageSFX;
+    public AudioClip shootSFX;
+
     [SerializeField]
     public int maxHealth = 5;
     public int currentHealth;
@@ -47,6 +51,7 @@ public class SeansTestPlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        playerAudio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         energyBarrierTrigger = GetComponentInChildren<CircleCollider2D>();
         startPosition = rb.transform.position;
@@ -113,6 +118,7 @@ public class SeansTestPlayerController : MonoBehaviour
     {
         if (canShoot && isBarrierActive == false)
         {
+            playerAudio.PlayOneShot(shootSFX, 0.35f);
             playerAnim.SetTrigger("Shoot");
             Instantiate(energyShotPrefab, fireOrigin.transform.position, fireOrigin.rotation);
             shotCoolDownTimer = shotCoolDown;
@@ -142,10 +148,14 @@ public class SeansTestPlayerController : MonoBehaviour
         if (!isInvincible)
         {
             currentHealth -= damageVal;
-
+            playerAudio.PlayOneShot(damageSFX, 0.4f);
             healthBar.SetHealth(currentHealth);
             isInvincible = true;
             StartCoroutine(Invincibile(2f));
+            if (currentHealth <= 0)
+            {
+                GameManager.Instance.ResetCurrentScene();
+            }
         }
     }
 

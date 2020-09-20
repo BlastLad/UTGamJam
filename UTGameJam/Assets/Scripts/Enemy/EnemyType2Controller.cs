@@ -11,7 +11,8 @@ public class EnemyType2Controller : MonoBehaviour
     public float changeTime = 3.0f;
     public Animator animator;
     bool isReverse = false;
-
+    private AudioSource enemyAudio;
+    public AudioClip destroySFX;
 
     Rigidbody2D rb;
     float timer;
@@ -21,6 +22,7 @@ public class EnemyType2Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemyAudio = GetComponent<AudioSource>();
         timer = changeTime;
     }
     private void FixedUpdate()
@@ -67,7 +69,9 @@ public class EnemyType2Controller : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         if (currentHitNum >= maxHitNum)
         {
-            Destroy(gameObject);
+            enemyAudio.PlayOneShot(destroySFX, 1f);
+            gameObject.transform.position = new Vector2(-20, 0);
+            Destroy(gameObject, .5f);
         }
     }
 
