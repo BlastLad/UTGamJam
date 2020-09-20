@@ -44,7 +44,7 @@ public class ShakeBehavior : MonoBehaviour
 
             shakeDuration -= Time.deltaTime * dampingSpeed;
         }
-        else
+        else if (GameManager.Instance.isInEvent)
         {
             shakeDuration = 0f;
             transform.localPosition = initialPosition;

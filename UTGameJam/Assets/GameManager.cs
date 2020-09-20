@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject crashTextBox;
 
-
+    public bool isInEvent = false;
     private void Awake()
     {
         Instance = this;
@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     {
         SeansTestPlayerController.Instance.gameObject.GetComponent<PlayerMovement>().enabled = false;
         SeansTestPlayerController.Instance.enabled = false;
+        isInEvent = true;
     }
 
     public void LoadNextScene()

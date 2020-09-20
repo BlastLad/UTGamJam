@@ -77,7 +77,8 @@ public class SeansTestPlayerController : MonoBehaviour
         else { playerAnim.SetBool("IsMoving", false); }
 
 
-        Vector3 shotRotation = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 shotRotation = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        Debug.Log(Input.mousePosition);
         float rotationOnZ = Mathf.Atan2(shotRotation.y, shotRotation.x) * Mathf.Rad2Deg;
         fireOrigin.rotation = Quaternion.Euler(0f, 0f, rotationOnZ + projectileOffSet);
 
