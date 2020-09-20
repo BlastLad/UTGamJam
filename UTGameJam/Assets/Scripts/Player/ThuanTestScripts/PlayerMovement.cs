@@ -88,6 +88,18 @@ public class PlayerMovement : MonoBehaviour
             Scene CS = SceneManager.GetActiveScene();
             SceneManager.LoadScene(CS.name);
         }
+
+        if(hit.gameObject.tag == "PortalToPath1")
+        {
+            int CSnum = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(CSnum + 1);
+        }
+
+        if (hit.gameObject.tag == "PortalToPath2")
+        {
+            int CSnum = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(CSnum + 1);
+        }
     }
 
 
