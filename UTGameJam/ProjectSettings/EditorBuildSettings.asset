@@ -4,5 +4,23 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 8b4c3b2e83359ac40b07f964515aa901
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/FinalTutorial.unity
+    guid: e1b6ff797adf6434fa8561f65d329efd
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/FinalRun1.unity
+    guid: a5724e7886a76fa4eaa756f1e0646369
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/FinalRun2.unity
+    guid: 6b2ed450e6ef8744ebe595314dcdc4c9
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/FinalRun3.unity
+    guid: ab5ca6b1965498a4f9041ed01b632009
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/FinalRun4.unity
+    guid: 604d10a58970289439f5303fdcc134b4
   m_configObjects: {}

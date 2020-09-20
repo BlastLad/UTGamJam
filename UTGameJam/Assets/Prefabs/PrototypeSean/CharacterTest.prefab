@@ -373,6 +373,7 @@ MonoBehaviour:
     type: 3}
   energyField: {fileID: 436733893}
   playerAnim: {fileID: 1596487634}
+  followPoint: {fileID: 811347507}
 --- !u!114 &1727259505
 MonoBehaviour:
   m_ObjectHideFlags: 0

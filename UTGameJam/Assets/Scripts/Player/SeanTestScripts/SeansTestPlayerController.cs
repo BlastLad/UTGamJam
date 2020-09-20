@@ -21,8 +21,8 @@ public class SeansTestPlayerController : MonoBehaviour
 
     public float shotCoolDown;
     private float shotCoolDownTimer;
-    private bool canShoot = true;
-    private bool canChangeColor = true;
+    public bool canShoot = true;
+    public bool canChangeColor = true;
     public bool isYellow = true;
 
     [SerializeField]
@@ -38,6 +38,8 @@ public class SeansTestPlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private CircleCollider2D energyBarrierTrigger;
     public Animator playerAnim;
+
+    public Transform followPoint;
 
     Vector3 startPosition;
 
@@ -156,7 +158,7 @@ public class SeansTestPlayerController : MonoBehaviour
 
     void ChangeColor()
     {
-        if (isBarrierActive == false)
+        if (isBarrierActive == false && canChangeColor)
         {
             isYellow = !isYellow;
             //if (isYellow) { playerAnim.SetBool("IsYellow", isYellow); }
