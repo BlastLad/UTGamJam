@@ -140,7 +140,7 @@ MonoBehaviour:
   projectileSpeed: 5
   maxShootRange: 30
   destroySFX: {fileID: 8300000, guid: d2bef5b8078575d4e9318c12a6651d7d, type: 3}
-  glitchSFX: {fileID: 0}
+  glitchSFX: {fileID: 8300000, guid: c90223deedcb4b1479896eb3d5dbd96e, type: 3}
   shootSFX: {fileID: 8300000, guid: 6726544e290e050458f1ccecb5352c3f, type: 3}
   projectilePrefab: {fileID: 6316625464173973923, guid: 62651a2e6ff95d444a60a99889fe678d,
     type: 3}

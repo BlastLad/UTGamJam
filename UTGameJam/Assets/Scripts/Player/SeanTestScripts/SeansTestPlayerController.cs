@@ -9,6 +9,7 @@ public class SeansTestPlayerController : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip damageSFX;
     public AudioClip shootSFX;
+    public AudioClip barrierSFX;
 
     [SerializeField]
     public int maxHealth = 5;
@@ -131,6 +132,10 @@ public class SeansTestPlayerController : MonoBehaviour
 
         if (ChargeBarTimerScript.Instance.canUseBarrier == true)
         {
+            //if (!playerAudio.isPlaying)
+            //{
+              //  playerAudio.PlayOneShot(barrierSFX, .2f);
+            //}
             playerAnim.SetBool("IsShielding", true);
             energyBarrierTrigger.enabled = true;
             rb.gravityScale = slowFallGravScale;

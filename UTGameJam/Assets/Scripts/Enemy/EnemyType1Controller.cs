@@ -74,7 +74,14 @@ public class EnemyType1Controller : MonoBehaviour
         currentHitNum++;
         if (currentHitNum >= maxHitNum) 
         {
-            enemyAudio.PlayOneShot(destroySFX, 1f);
+            if(GameManager.Instance.currentScene > 2)
+            {
+                enemyAudio.PlayOneShot(glitchSFX, 0.2f);
+            }
+            else
+            {
+                enemyAudio.PlayOneShot(destroySFX, 1f);
+            }
             Destroy(gameObject, 0.5f);
         }
     }

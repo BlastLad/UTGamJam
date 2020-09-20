@@ -13,6 +13,7 @@ public class EnemyType2Controller : MonoBehaviour
     bool isReverse = false;
     private AudioSource enemyAudio;
     public AudioClip destroySFX;
+    public AudioClip glitchSFX;
 
     Rigidbody2D rb;
     float timer;
@@ -69,7 +70,14 @@ public class EnemyType2Controller : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         if (currentHitNum >= maxHitNum)
         {
-            enemyAudio.PlayOneShot(destroySFX, 1f);
+            if (GameManager.Instance.currentScene > 2)
+            {
+                enemyAudio.PlayOneShot(glitchSFX, 0.2f);
+            }
+            else
+            {
+                enemyAudio.PlayOneShot(destroySFX, 1f);
+            }
             gameObject.transform.position = new Vector2(-20, 0);
             Destroy(gameObject, .5f);
         }

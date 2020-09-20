@@ -141,6 +141,7 @@ MonoBehaviour:
   changeTime: 5
   animator: {fileID: 0}
   destroySFX: {fileID: 8300000, guid: d2bef5b8078575d4e9318c12a6651d7d, type: 3}
+  glitchSFX: {fileID: 8300000, guid: c90223deedcb4b1479896eb3d5dbd96e, type: 3}
 --- !u!95 &741546355
 Animator:
   serializedVersion: 3
