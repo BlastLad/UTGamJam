@@ -162,6 +162,7 @@ public class SeansTestPlayerController : MonoBehaviour
             //if (isYellow) { playerAnim.SetBool("IsYellow", isYellow); }
             playerAnim.SetBool("IsYellow", isYellow);
             energyField.GetComponent<EnergyField>().SwitchColor();
+            ChargeBarTimerScript.Instance.ChangeImage();
             Debug.Log(isYellow);
         }
     }

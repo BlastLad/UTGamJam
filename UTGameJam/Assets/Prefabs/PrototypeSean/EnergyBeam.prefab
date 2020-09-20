@@ -146,8 +146,8 @@ MonoBehaviour:
   isYellow: 1
   isOnTimer: 0
   switchTime: 3
-  yellowBeam: {fileID: 2100000, guid: a36b530c6c08b12459f8524a1f87c4f6, type: 2}
-  redBeam: {fileID: 2100000, guid: ed5db7fc272e34c43b1a7d8486d5e9be, type: 2}
+  yellowBeam: {fileID: 2100000, guid: 051becc02b636cd479938e9ffc64bb63, type: 2}
+  redBeam: {fileID: 2100000, guid: 406d7595cf7077c41ad1171029cbb790, type: 2}
   secondPositionControl: {fileID: 3765484987319234832}
 --- !u!1 &3765484987319234832
 GameObject:
@@ -216,8 +216,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 116733695
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 82e3e6f475df29445ba9ac39384fd2cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

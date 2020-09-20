@@ -73,6 +73,7 @@ public class EnergyBeamController : MonoBehaviour
 
         lineCollider.tag = "EnergyBeam";
 
+
         lineCollider.gameObject.layer = 13;//EnergyBeam
 
         lineCollider.isTrigger = false;

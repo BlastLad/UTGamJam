@@ -6,6 +6,9 @@ public class ChargeBarTimerScript : MonoBehaviour
 {
     public static ChargeBarTimerScript Instance { get; private set; }
 
+    public GameObject yellowSprite;
+    public GameObject RedSprite;
+
     [SerializeField]
     GameObject timerBar;
 
@@ -70,5 +73,20 @@ public class ChargeBarTimerScript : MonoBehaviour
     {
         slider.maxValue = max;
         slider.value = max;
+    }
+
+    public void ChangeImage()
+    {
+        if(yellowSprite.gameObject.activeSelf)
+        {
+            yellowSprite.SetActive(false);
+            RedSprite.SetActive(true);
+        }
+        else
+        {
+            yellowSprite.SetActive(true);
+            RedSprite.SetActive(false);
+        }
+        
     }
 }
