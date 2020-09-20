@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     private float moveInput;
 
+    public bool canJump = true;
+
     private Rigidbody2D rb;
 
     private bool facingRight = true;
@@ -57,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             extraJumps = extraJumpsValue;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0 && GetComponent<SeansTestPlayerController>().isBarrierActive == false)
+        if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0 && GetComponent<SeansTestPlayerController>().isBarrierActive == false && canJump)
         {
             playerGFX.GetComponent<Animator>().SetTrigger("IsJumping");
             playerGFX.GetComponent<Animator>().SetBool("IsInAir", true);
@@ -65,9 +67,10 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true && GetComponent<SeansTestPlayerController>().isBarrierActive == false)
+        else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true && GetComponent<SeansTestPlayerController>().isBarrierActive == false && canJump)
         {
             playerGFX.GetComponent<Animator>().SetTrigger("IsJumping");
+            playerGFX.GetComponent<Animator>().SetBool("IsInAir", true);
             rb.velocity = Vector2.up * jumpForce;
         }
     }

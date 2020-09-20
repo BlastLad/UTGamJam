@@ -53,7 +53,7 @@ public class ShakeBehavior : MonoBehaviour
 
     public void TriggerShake()
     {
-        shakeDuration = 2.0f;
+        shakeDuration = 3f;
     }
 
     void OnEnable()

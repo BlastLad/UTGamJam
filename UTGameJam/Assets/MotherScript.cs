@@ -38,7 +38,8 @@ public class MotherScript : MonoBehaviour
         //Play audio clip
         //Animation???
          StartCoroutine(LoadNextSceneTime(timeValue));
-        //ShakeBehavior.Instance.TriggerShake();
+        ShakeBehavior.Instance.gameObject.GetComponent<CameraFollow>().SetPosInEvent();
+        ShakeBehavior.Instance.TriggerShake();
     }
 
     private IEnumerator LoadNextSceneTime(float timeToWait)
